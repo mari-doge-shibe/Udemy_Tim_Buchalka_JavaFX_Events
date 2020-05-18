@@ -13,6 +13,7 @@
         onAction="#onButtonClicked"/>
     <Button fx:id="byeButton" text="Say Bye" GridPane.rowIndex="1" GridPane.columnIndex="1"
             onAction="#onButtonClicked"/>
-    <CheckBox text="Clear the field after saying hello or bye" GridPane.rowIndex="2"
-              GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+    <CheckBox fx:id="ourCheckBox" text="Clear the field after saying hello or bye" GridPane.rowIndex="2"
+              GridPane.columnIndex="0" GridPane.columnSpan="2"
+                onAction="#handleChange"/>
 </GridPane>
