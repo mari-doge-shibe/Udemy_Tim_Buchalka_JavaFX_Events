@@ -30,6 +30,14 @@ public class Controller {
         } else if (e.getSource().equals(byeButton)) {
             System.out.println("Bye, " + nameField.getText());
         }
+        // put the thread to sleep for 10 seconds
+        try {
+            Thread.sleep(10000);
+        } catch(InterruptedException event) {
+            // leave the exception blank for now
+        }
+
+
         if(ourCheckBox.isSelected()) {
             nameField.clear();
             helloButton.setDisable(true);
