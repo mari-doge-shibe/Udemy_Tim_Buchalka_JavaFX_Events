@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,8 +40,17 @@ public class Controller {
             public void run() {
                 // put the thread to sleep for 10 seconds
                 try {
+                    String s = Platform.isFxApplicationThread() ? "UI Thread" : "Background Thread";
+                    System.out.println("I'm going to sleep on the: " + s);
                     Thread.sleep(10000);
-                    ourLabel.setText("We did something!");
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            String s = Platform.isFxApplicationThread() ? "UI Thread" : "Background Thread";
+                            System.out.println("I'm updating the label on the: " + s);
+                            ourLabel.setText("We did something!");
+                        }
+                    });
                 } catch(InterruptedException event) {
                     // leave the exception blank for now
                 }
@@ -48,7 +58,7 @@ public class Controller {
         };
 
         new Thread(task).start();
-        
+
         if(ourCheckBox.isSelected()) {
             nameField.clear();
             helloButton.setDisable(true);
