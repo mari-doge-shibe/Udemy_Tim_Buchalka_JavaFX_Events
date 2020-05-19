@@ -33,14 +33,22 @@ public class Controller {
         } else if (e.getSource().equals(byeButton)) {
             System.out.println("Bye, " + nameField.getText());
         }
-        // put the thread to sleep for 10 seconds
-        try {
-            Thread.sleep(10000);
-        } catch(InterruptedException event) {
-            // leave the exception blank for now
-        }
 
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                // put the thread to sleep for 10 seconds
+                try {
+                    Thread.sleep(10000);
+                    ourLabel.setText("We did something!");
+                } catch(InterruptedException event) {
+                    // leave the exception blank for now
+                }
+            }
+        };
 
+        new Thread(task).start();
+        
         if(ourCheckBox.isSelected()) {
             nameField.clear();
             helloButton.setDisable(true);
